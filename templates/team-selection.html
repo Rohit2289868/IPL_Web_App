@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Selection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #c3e3c8;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 10px;
+            font-size: 18px;
+        }
+
+        select {
+            font-size: 16px;
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #428bca;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3071a9;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Team Selection</h1>
+<form action="/teamvsteam" method="get">
+    <label for="team1">Select Team 1:</label>
+    <select id="team1" name="team1">
+        {% for team in teams %}
+            <option value="{{ team }}">{{ team }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="team2">Select Team 2:</label>
+    <select id="team2" name="team2">
+        {% for team in teams %}
+            <option value="{{ team }}">{{ team }}</option>
+        {% endfor %}
+    </select><br>
+
+    <input type="submit" value="Find Track Record" style="background-color: #428bca; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+</form>
+
+{% if result %}
+    {% for i in result %}
+        <p>{{ i }} : {{ result[i] }}</p>
+    {% endfor %}
+{% endif %}
+
+
+</body>
+</html>

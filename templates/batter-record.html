@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Team Performance</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .box {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .box h2 {
+            color: #333;
+        }
+
+        .team-performance {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .opponent-performance {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .opponent-box {
+            width: 300px;
+            margin: 10px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    {% if batsman %}
+        <h1>{{ batsman }} IPL Performance</h1>
+    {% endif %}
+
+    <div class="team-performance">
+        <div class="box">
+            <h2>Overall Performance</h2>
+            <p>Innings: {{ response[batsman]["All"]["innings"] }}</p>
+            <p>Runs: {{ response[batsman]["All"]["runs"] }}</p>
+            <p>Average: {{ response[batsman]["All"]["avg"] }}</p>
+            <p>Strike Rate: {{ response[batsman]["All"]["strikeRate"] }}</p>
+            <p>Hundreds: {{ response[batsman]["All"]["hundreds"] }}</p>
+            <p>Fifties: {{ response[batsman]["All"]["fifties"] }}</p>
+            <p>Sixes: {{ response[batsman]["All"]["sixes"] }}</p>
+            <p>Fours: {{ response[batsman]["All"]["fours"] }}</p>
+            <p>Not Out: {{ response[batsman]["All"]["notOut"] }}</p>
+            <p>Highest Score: {{ response[batsman]["All"]["highestScore"] }}</p>
+            <p>MoM: {{ response[batsman]["All"]["mom"] }}</p>
+        </div>
+    </div>
+
+    <div class="opponent-performance">
+        {% for opponent, data in response[batsman]["against"].items() %}
+            <div class="opponent-box">
+                <h2>{{ opponent }}</h2>
+                <p>Innings: {{ data["innings"] }}</p>
+                <p>Runs: {{ data["runs"] }}</p>
+                <p>Average: {{ data["avg"] }}</p>
+                <p>Strike Rate: {{ data["strikeRate"] }}</p>
+                <p>Hundreds: {{ data["hundreds"] }}</p>
+                <p>Fifties: {{ data["fifties"] }}</p>
+                <p>Sixes: {{ data["sixes"] }}</p>
+                <p>Fours: {{ data["fours"] }}</p>
+                <p>Not Out: {{ data["notOut"] }}</p>
+                <p>Highest Score: {{ data["highestScore"] }}</p>
+                <p>MoM: {{ data["mom"] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

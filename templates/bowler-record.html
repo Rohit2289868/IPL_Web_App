@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Team Performance</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .box {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .box h2 {
+            color: #333;
+        }
+
+        .team-performance {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .opponent-performance {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .opponent-box {
+            width: 300px;
+            margin: 10px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    {% if bowler %}
+        <h1>{{ bowler }} IPL Performance</h1>
+    {% endif %}
+
+    <div class="team-performance">
+        <div class="box">
+            <h2>Overall Performance</h2>
+            <p>Innings: {{ response[bowler]["All"]["innings"] }}</p>
+            <p>Wicket: {{ response[bowler]["All"]["wicket"] }}</p>
+            <p>Average: {{ response[bowler]["All"]["avg"] }}</p>
+            <p>Economy: {{ response[bowler]["All"]["economy"] }}</p>
+            <p>Strike Rate: {{ response[bowler]["All"]["strikeRate"] }}</p>
+            <p>3+W: {{ response[bowler]["All"]["3+W"] }}</p>
+            <p>Best Figure: {{ response[bowler]["All"]["best_figure"] }}</p>
+            <p>Sixes: {{ response[bowler]["All"]["sixes"] }}</p>
+            <p>Fours: {{ response[bowler]["All"]["fours"] }}</p>
+            <p>MoM: {{ response[bowler]["All"]["mom"] }}</p>
+        </div>
+    </div>
+
+    <div class="opponent-performance">
+        {% for opponent, data in response[bowler]["against"].items() %}
+            <div class="opponent-box">
+                <h2>{{ opponent }}</h2>
+                <p>Innings: {{ data["innings"] }}</p>
+                <p>Wicket: {{ data["runs"] }}</p>
+                <p>Average: {{ data["avg"] }}</p>
+                <p>Economy: {{ data["economy"] }}</p>
+                <p>Strike Rate: {{ data["strikeRate"] }}</p>
+                <p>3+W: {{ data["3+W"] }}</p>
+                <p>Best Figure: {{ data["best_figure"] }}</p>
+                <p>Sixes: {{ data["sixes"] }}</p>
+                <p>Fours: {{ data["fours"] }}</p>
+                <p>MoM: {{ data["mom"] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

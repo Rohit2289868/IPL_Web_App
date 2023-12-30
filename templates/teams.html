@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Teams</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://m.economictimes.com/thumb/msid-99136139,width-1600,height-900,resizemode-4,imgsize-66426/ipl-2023-schedule.jpg ') center/cover no-repeat;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for better readability */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+            text-align: center;
+        }
+
+        li {
+            font-size: 20px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for better readability */
+            padding: 10px;
+            border-radius: 5px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Teams</h1>
+    <ul>
+        {% for team in teams %}
+            <li>{{ team }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
